@@ -1,0 +1,12 @@
+# Superuser premission
+sudo: required
+# Docker CLI needs to be preinstalled
+services:
+  - docker
+
+# Build image before install
+before_install:
+  - docker build -t tl9474/docker-workflow -f Dockerfile.dev .
+ 
+script:
+  - docker run tl9474/docker-workflow npm run test -- -- coverage
